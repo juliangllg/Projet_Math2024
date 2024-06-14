@@ -249,3 +249,161 @@ end
 ```
 
 ![image ex1.6](./Images/Ex1_6.png)
+
+## Exercice 2
+### 1)
+
+```
+//Charger les données du fichier data.csv
+data = csvRead('data.csv');
+
+//Initialisation des variables a partir du fichier data.csv
+ages = data(:, 2);
+
+
+classes = [0:5:100];
+
+
+// Trouver les valeurs des âges 
+valeurs_valides = find(ages >= 0);
+
+
+// Affichage du graphe
+histplot(classes, ages(valeurs_valides), normalization=%f);
+title("Distribution des âges");
+xlabel(" ge (années)");
+ylabel("Nombre de personnes");
+```
+
+![images ex2.1](./images/Ex2_1.png)
+
+### 2)
+```
+//Charger les données du fichier data.csv
+data = csvRead('data.csv');
+
+
+//Initialisation des variables a partir du fichier data.csv
+experience_years = data(:, 6);
+
+classes = [0:5:50];
+
+// Trouver les valeurs de expérience 
+valeurs_valides = find(experience_years >= 0);
+
+
+// Affichage du graphe
+histplot(classes, experience_years(valeurs_valides), normalization=%f);
+title("Distribution de expérience");
+xlabel("Années expérience");
+ylabel("Nombre de personnes");
+
+```
+![image ex2.2](./Images/Ex2_2.png)
+
+### 3)
+
+```
+//Charger les données du fichier data.csv
+data = csvRead('data.csv');
+disp("Données chargées :");
+disp(data(1:10, :));  // Afficher les 10 premières lignes des données pour vérification
+
+
+//Initialisation des variables a partir du fichier data.csv
+ages = data(:, 2);
+disp("Colonne des âges extraite :");
+disp(ages(1:10));  // Afficher les 10 premiers âges pour vérification
+
+
+// Vérifier les valeurs invalides
+invalid_ages = ages(find(ages < 0));
+if ~isempty(invalid_ages) then
+    disp("Valeurs invalides trouvées dans la colonne des âges :");
+    disp(invalid_ages);
+end
+
+
+// Calculer les statistiques descriptives de l'âge
+min_age = min(ages);
+disp("Minimum calculé : " + string(min_age));
+
+
+max_age = max(ages);
+disp("Maximum calculé : " + string(max_age));
+
+
+mean_age = mean(ages);
+disp("Moyenne calculée : " + string(mean_age));
+
+
+median_age = median(ages);
+disp("Médiane calculée : " + string(median_age));
+
+
+// Fonction pour calculer le mode
+function mode_value = calc_mode(data)
+    unique_values = unique(data);
+    counts = zeros(size(unique_values));
+    for i = 1:length(unique_values)
+        counts(i) = sum(data == unique_values(i));
+    end
+    [max_count, max_idx] = max(counts);  // Obtenir la valeur max et son indice
+    mode_value = unique_values(max_idx);
+endfunction
+
+
+mode_age = calc_mode(ages);
+disp("Mode calculé : " + string(mode_age));
+
+
+std_dev_age = stdev(ages);
+disp("Écart type calculé : " + string(std_dev_age));
+
+
+// Fonction pour calculer les quartiles
+function quartiles = calc_quartiles(data)
+    sorted_data = gsort(data, "g", "i");  // Trier les données dans l'ordre croissant
+    n = length(sorted_data);
+    q1 = sorted_data(round(0.25 * (n + 1)));
+    q2 = sorted_data(round(0.50 * (n + 1)));  // C'est la médiane
+    q3 = sorted_data(round(0.75 * (n + 1)));
+    quartiles = [q1, q2, q3];
+endfunction
+
+
+quartiles_age = calc_quartiles(ages);
+disp("Quartiles calculés :");
+disp("1er quartile (Q1) : " + string(quartiles_age(1)));
+disp("Médiane (Q2) : " + string(quartiles_age(2)));
+disp("3ème quartile (Q3) : " + string(quartiles_age(3)));
+
+
+iqr_age = quartiles_age(3) - quartiles_age(1);
+disp("Interquartile range (IQR) calculé : " + string(iqr_age));
+
+
+// Enfin afficher le résultat
+disp("Statistiques descriptives de age :");
+disp("------------------------------------");
+disp("Minimum : " + string(min_age));
+disp("Maximum : " + string(max_age));
+disp("Moyenne : " + string(mean_age));
+disp("Médiane : " + string(median_age));
+disp("Mode : " + string(mode_age));
+disp("Écart type : " + string(std_dev_age));
+disp("1er quartile (Q1) : " + string(quartiles_age(1)));
+disp("Médiane (Q2) : " + string(quartiles_age(2)));
+disp("3ème quartile (Q3) : " + string(quartiles_age(3)));
+disp("Interquartile range (IQR) : " + string(iqr_age));
+```
+![image ex2.3](./Images/Ex2_3.png)
+
+### 4)
+
+```
+//Charger les données du fichier data.csv
+//Initialisation des variables a partir du fichier data.csv
+
+```
+
