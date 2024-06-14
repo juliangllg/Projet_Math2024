@@ -1,8 +1,8 @@
 # SAEMATH
 
-##Exercice 1
+## Exercice 1
 
-###1)
+### 1)
 
 ```
 // Charger les données du fichier data.csv
@@ -23,7 +23,7 @@ legend('Homme', 'Femme', 'Other');
 
 ![alt text](./Images/Ex1_1.png)
 
-###2
+### 2
 
 ```
 // Charger les données du fichier data.csv
@@ -76,7 +76,7 @@ legend(["Hommes", "Femmes", "Autres"]);
 ```
 ![image Ex1.2](./Images/Ex1_2.png)
 
-###3
+### 3
 ```
 // Charger les données du fichier data.csv
 data_txt = csvRead('data.csv', [], [], 'string');
