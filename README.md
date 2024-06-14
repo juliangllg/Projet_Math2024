@@ -20,7 +20,7 @@ title('Répartition des genres');
 legend('Homme', 'Femme', 'Other');
 ```
 
-![alt text](https://grond.iut-fbleau.fr/gallego/SAEMATH/src/branch/main/Images/Ex1_1.png)
+![alt text](./Images/Ex1_1.png)
 
 
 
