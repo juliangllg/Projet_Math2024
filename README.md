@@ -74,7 +74,7 @@ xtitle(xtick_labels);
 legend(["Hommes", "Femmes", "Autres"]);
 
 ```
-![image Ex1.2] (./Images/Ex1_2.png)
+![image Ex1.2](./Images/Ex1_2.png)
 
 ###3
 ```
