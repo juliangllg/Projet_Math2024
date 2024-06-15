@@ -564,7 +564,7 @@ title('Nuage de points et droites de régression par sexe');
 legend(['Hommes', 'Régression Hommes', 'Femmes', 'Régression Femmes'], 'location', 'northwest');
 
 ```
-![nuage de point et droite de regresion](Ex5_1.png)
+![nuage de point et droite de regresion](./Images/Ex5_1.png)
 
 ### 2)
 ```
