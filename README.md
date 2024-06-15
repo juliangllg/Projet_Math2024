@@ -433,7 +433,7 @@ xlabel('Ages');
 ylabel('Valeur');
 
 ```
-![image ex2.4](./Images/Ex2_4)
+![image ex2.4](./Images/Ex2_4.png)
 
 ## Exercice 4
 ### 1)
@@ -520,7 +520,7 @@ correlation = numerator / denominator;
 // Affichage du coefficient de corrélation
 disp("Coefficient de corrélation : " + string(correlation));
 ```
-![nuage de point 4.2](./Images/Ex4_2_nuage.png)
+![nuage de point 4.2](./Images/Ex4_2nuage.png)
 ![image ex4.2](./Images/Ex4_2.png)
 
 ## Exercice 5
