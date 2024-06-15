@@ -81,7 +81,7 @@ legend(["Hommes", "Femmes", "Autres"]);
 // Charger les données du fichier data.csv
 data_txt = csvRead('data.csv', [], [], 'string');
 
-// Initialisation des variables a partir du fichier data.csv
+// Initialisation des variables à partir du fichier data.csv
 professions = data_txt(:, 5);
 
 // Trouver les professions uniques et compter les occurrences
@@ -117,10 +117,10 @@ set(gca(), "x_tick_angle", 45);
 ### 4)
 
 ```
-//Charger les données du fichier data.csv
+// Charger les données du fichier data.csv
 data_txt = csvRead('data.csv', [], [], 'string');
 
-//Initialisation des variables a partir du fichier data.csv
+// Initialisation des variables à partir du fichier data.csv
 genders = data_txt(:, 3);
 professions = data_txt(:, 5);
 
@@ -159,11 +159,11 @@ disp("La profession la plus fréquente des hommes est : " + most_frequent_profes
 ### 5)
 
 ```
-//Charger les données du fichier data.csv
+// Charger les données du fichier data.csv
 data_nbr = csvRead('data.csv');
 data_txt = csvRead('data.csv', [], [], 'string');
 
-//Initialisation des variables a partir du fichier data.csv
+// Initialisation des variables à partir du fichier data.csv
 education_levels = data_nbr(:, 4);
 salaries = data_nbr(:, 7);
 ages = data_nbr(:, 2);
@@ -204,11 +204,11 @@ end
 ### 6)
 
 ```
-//Charger les données du fichier data.csv
+// Charger les données du fichier data.csv
 data_txt = csvRead('data.csv', [], [], 'string');
 data_nbr = csvRead('data.csv');
 
-//Initialisation des variables a partir du fichier data.csv
+// Initialisation des variables à partir du fichier data.csv
 genders = data_txt(:, 3);
 salaries = data_nbr(:, 7);
 ages = data_nbr(:, 2);
@@ -254,10 +254,10 @@ end
 ### 1)
 
 ```
-//Charger les données du fichier data.csv
+// Charger les données du fichier data.csv
 data = csvRead('data.csv');
 
-//Initialisation des variables a partir du fichier data.csv
+// Initialisation des variables à partir du fichier data.csv
 ages = data(:, 2);
 
 
@@ -275,7 +275,7 @@ xlabel(" ge (années)");
 ylabel("Nombre de personnes");
 ```
 
-![images ex2.1](./images/Ex2_1.png)
+![images ex2.1](./Images/Ex2_1.png)
 
 ### 2)
 ```
@@ -304,13 +304,13 @@ ylabel("Nombre de personnes");
 ### 3)
 
 ```
-//Charger les données du fichier data.csv
+// Charger les données du fichier data.csv
 data = csvRead('data.csv');
 disp("Données chargées :");
 disp(data(1:10, :));  // Afficher les 10 premières lignes des données pour vérification
 
 
-//Initialisation des variables a partir du fichier data.csv
+// Initialisation des variables à partir du fichier data.csv
 ages = data(:, 2);
 disp("Colonne des âges extraite :");
 disp(ages(1:10));  // Afficher les 10 premiers âges pour vérification
@@ -402,8 +402,234 @@ disp("Interquartile range (IQR) : " + string(iqr_age));
 ### 4)
 
 ```
-//Charger les données du fichier data.csv
-//Initialisation des variables a partir du fichier data.csv
+// Installer le paquet stixbox
+atomsInstall("stixbox");
+
+// Charger le paquet stixbox
+atomsLoad("stixbox");
+
+// Charger les données du fichier data.csv
+data = csvRead('data.csv');
+
+// Initialisation des variables à partir du fichier data.csv
+ages = data(:, 2);
+
+// Vérifier les valeurs invalides
+invalid_ages = ages(find(ages < 0));
+if ~isempty(invalid_ages) then
+    disp("Valeurs invalides trouvées dans la colonne des âges :");
+    disp(invalid_ages);
+end
+
+// Supprimer les âges invalides 
+valid_ages = ages(find(ages >= 0));
+
+
+// Affichage de la boîte à moustache pour les âges
+figure();
+boxplot(valid_ages);
+title('Boîte à moustache des âges');
+xlabel('Ages');
+ylabel('Valeur');
 
 ```
+![image ex2.4](./Images/Ex2_4)
+
+## Exercice 4
+### 1)
+```
+// Charger les données du fichier data.csv
+data = csvRead('data.csv');
+
+
+// Initialisation des variables à partir du fichier data.csv
+age = data(:, 2);
+salaire = data(:, 7);
+
+
+// Affichage du nuage de points
+scatter(age, salaire, 10, '+');
+xlabel('Age');
+ylabel('Salaire');
+title('Nuage de points : Age vs Salaire');
+
+A = [ones(length(age), 1), age];
+
+coefficients = A \ salaire;
+salaire_pred = A * coefficients;
+
+
+// Tracer la droite de régression
+plot(age, salaire, '+'); // Tracer le nuage de points
+plot(age, salaire_pred, '-r'); // Tracer la droite de régression
+legend(['Données', 'Droite de régression'], 'Location', 'northwest');
+
+
+// Calcul du coefficient de corrélation
+mean_age = mean(age);
+mean_salaire = mean(salaire);
+numerateur = sum((age - mean_age) .* (salaire - mean_salaire));
+denominateur = sqrt(sum((age - mean_age).^2) * sum((salaire - mean_salaire).^2));
+correlation_coefficient = numerateur / denominateur;
+
+
+// Affichage du coefficient de corrélation
+disp(correlation_coefficient);
+```
+![nuage de point](./Images/Ex4_1_nuage.png)
+![image ex4.1](./Images/Ex4_1.png)
+
+### 2)
+```
+// Charger les données du fichier data.csv
+data = csvRead("data.csv");
+
+// Initialisation des variables à partir du fichier data.csv
+experience = data(:, 6);
+salaire = data(:, 7);
+
+n = length(experience);
+sum_x = sum(experience);
+
+sum_y = sum(salaire);
+sum_xy = sum(experience .* salaire)
+sum_x2 = sum(experience.^2);
+
+b = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x^2); 
+a = (sum_y - b * sum_x) / n;
+clf;
+
+// Affichage du nuage de points
+plot(experience, salaire, 'bo');
+xlabel('Expérience (années)');
+ylabel('Salaire ($)');
+title('Nuage de points et droite de régression');
+
+// Tracer la droite de régression 
+y_pred = a + b * experience;
+plot(experience, y_pred, 'r-');
+legend(['Données', 'Régression linéaire'], 'location', 'northwest');
+
+// Calcul du coefficient de corrélation 
+mean_experience = mean(experience);
+mean_salaire = mean(salaire);
+numerator = sum((experience - mean_experience) .* (salaire - mean_salaire));
+denominator = sqrt(sum((experience - mean_experience).^2) * sum((salaire - mean_salaire).^2));
+correlation = numerator / denominator;
+
+// Affichage du coefficient de corrélation
+disp("Coefficient de corrélation : " + string(correlation));
+```
+![nuage de point 4.2](./Images/Ex4_2_nuage.png)
+![image ex4.2](./Images/Ex4_2.png)
+
+## Exercice 5
+### 1)
+```
+// Charger les données du fichier data.csv
+data_nbr = csvRead('data.csv');
+data_txt = csvRead('data.csv', [], [], 'string');
+
+// Initialisation des variables à partir du fichier data.csv
+experience = data_nbr(:, 6);
+salaire = data_nbr(:, 7);
+sexe = data_txt(:, 3);
+
+// Séparer les données pour les hommes et les femmes
+experience_hommes = experience(sexe == 'Male');
+salaire_hommes = salaire(sexe == 'Male');
+
+experience_femmes = experience(sexe == 'Female');
+salaire_femmes = salaire(sexe == 'Female');
+
+// Calcul de la régression linéaire pour les hommes (méthode des moindres carrés)
+X_hommes = [ones(length(experience_hommes), 1), experience_hommes];
+coeffs_hommes = X_hommes \ salaire_hommes;
+salaire_pred_hommes = X_hommes * coeffs_hommes;
+
+// Calcul de la régression linéaire pour les femmes (méthode des moindres carrés)
+X_femmes = [ones(length(experience_femmes), 1), experience_femmes];
+coeffs_femmes = X_femmes \ salaire_femmes;
+salaire_pred_femmes = X_femmes * coeffs_femmes;
+
+// Afficher le nuage de points et les droites de régression
+clf;
+plot(experience_hommes, salaire_hommes, 'bo'); // Nuage de points pour les hommes
+plot(experience_hommes, salaire_pred_hommes, 'b-'); // Droite de régression pour les hommes
+plot(experience_femmes, salaire_femmes, 'ro'); // Nuage de points pour les femmes
+plot(experience_femmes, salaire_pred_femmes, 'r-'); // Droite de régression pour les femmes
+xlabel('Expérience (années)');
+ylabel('Salaire ($)');
+title('Nuage de points et droites de régression par sexe');
+legend(['Hommes', 'Régression Hommes', 'Femmes', 'Régression Femmes'], 'location', 'northwest');
+
+```
+![nuage de point et droite de regresion](Ex5_1.png)
+
+### 2)
+```
+// Charger les données du fichier data.csv
+data = csvRead('data.csv');
+
+// Initialisation des variables à partir du ficher data.csv
+experience = data(:, 6);
+salaire = data(:, 7);
+niveau_etudes = data(:, 4); // Supposons que la colonne 4 contient les niveaux d'études
+
+
+niveaux = unique(niveau_etudes);
+
+
+// Tracer le nuage de points et les droites de régression pour chaque niveau d'études
+clf;
+for i = 1:length(niveaux)
+    niveau = niveaux(i);
+
+
+    // Sélectionner les indices pour ce niveau d'études
+    indices_niveau = find(niveau_etudes == niveau);
+
+
+    // Sélectionner les données pour ce niveau d'études
+    experience_niveau = experience(indices_niveau);
+    salaire_niveau = salaire(indices_niveau);
+
+
+    // Si aucune donnée pour ce niveau, passer au suivant
+    if isempty(experience_niveau) || isempty(salaire_niveau)
+        continue;
+    end
+
+
+    // Calculer les coefficients de régression linéaire
+    X_niveau = [ones(length(experience_niveau), 1), experience_niveau];
+    coeffs_niveau = X_niveau \ salaire_niveau;
+    salaire_pred_niveau = X_niveau * coeffs_niveau;
+
+
+    // Tracer le nuage de points et la droite de régression
+    subplot(2, 2, i);
+    plot(experience_niveau, salaire_niveau, 'o');
+    plot(experience_niveau, salaire_pred_niveau, '-');
+    xlabel('Expérience (années)');
+    ylabel('Salaire ($)');
+    title(['Niveau d''études : ', string(niveau)]);
+end
+
+```
+![image ex5.2](./Images/Ex5_2.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
