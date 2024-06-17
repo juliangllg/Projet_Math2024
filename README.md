@@ -439,27 +439,35 @@ ylabel('Valeur');
 
 ### 1)
 ```
-data_nbr = csvRead('data.csv');
-data_txt = csvRead('data.csv', [], [], 'string');
+data_nbr = csvRead('../../data.csv');
+data_txt = csvRead('../../data.csv', [], [], 'string');
 
 genre = data_txt(:, 3);
 salaire = data_nbr(:, 7);
 
-D_homme = D(genre == 'Male',:); 
-D_femme = D(genre == 'Female',:); 
-salaire_homme = D_homme(:,7); 
-salaire_femme = D_femme(:,7); 
-subplot(2, 1, 1); 
-histplot(num_bins, salaire_homme); 
+salaire_homme = salaire(genre == "Male"); 
+salaire_femme = salaire(genre == "Female"); 
+salaire_other = salaire(genre == "Other")
+
+subplot(3, 1, 1); 
+histplot(50, salaire_homme); 
 title("Distribution des salaires pour les hommes"); 
 xlabel("Salaire"); 
 ylabel("Fréquence"); 
-subplot(2, 1, 2); 
-histplot(num_bins, salaire_femme); 
+
+subplot(3, 1, 2); 
+histplot(50, salaire_femme); 
 title("Distribution des salaires pour les femmes"); 
 xlabel("Salaire"); 
 ylabel("Fréquence");
+
+subplot(3, 1, 3); 
+histplot(50, salaire_other); 
+title("Distribution des salaires pour les autres"); 
+xlabel("Salaire"); 
+ylabel("Fréquence");
 ```
+![alt text](./Images/Ex3_1.png)
 
 ### 2)
 ```
@@ -530,6 +538,7 @@ title("Histogramme des salaires moyens par niveau etudes");
 xlabel("Niveau etudes");
 ylabel("Salaire moyen");
 ```
+![alt text](./Images/Ex3_2.png)
 ### 3)
 ```
  // Charger les données à partir du fichier CSV
@@ -618,7 +627,7 @@ title("Boîte à moustaches des salaires");
 ylabel("Salaires");
 
 ```
-
+![alt text](./Images/Ex3_3.png)
 ### 4)
 ```
 // Charger les données à partir du fichier CSV
@@ -755,7 +764,7 @@ title('Boîtes à moustaches des salaires par genre');
 ylabel('Salaires');
 xlabel('Genre');
 ```
-
+![alt text](./Images/Ex3_4.png)
 ## Exercice 4
 ### 1)
 ```
