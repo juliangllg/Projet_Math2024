@@ -435,7 +435,7 @@ ylabel('Valeur');
 ```
 ![image ex2.4](./Images/Ex2_4.png)
 
-## Exercice 5
+## Exercice 3
 
 ### 1)
 ```
